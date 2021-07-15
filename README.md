@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+## 리덕스 미들웨어
+    - action => middleware => reducer => store
+        - 액션이 디스패치 된 다음
+        - 리듀서에서 해당 액션을 받아와서 업데이트하기 전에
+        - 추가적인 작업을 할 수 있는 것들
+            - 특정 조건에 따라 액션이 무시
+            - 액션을 콘솔에 출력, 서버쪽에 로깅
+            - 액션이 디스패치 => 수정 => 리듀서에게 전달
+            - 특정 액션이 발생 => 다른 액션이 발생
+            - 특정 액션이 발생 => 특정 자바스크립트 함수를 실행
+            - 주된 사용 용도는 비동기 작업을 처리
+                - 백엔드 API 를 연동 ? 리덕스 미들웨어를 사용
+    - 비동기 작업에 관련된 미들웨어 라이브러리
+        - redux-thunk
+        - redux-saga
+        - redux-observable
+        - redux-promise-middleware
+    - redux-saga와 redux-observable
+        - 특정 액션을 모니터링 가능
+            - 특정 액션이 디스패치됐을때 원하는 함수를 호출
+            - 라우터를 통해 다른 주소로 이동
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 2. 미들웨어 만들어보고 이해하기
+    - 리덕스 미들웨어를 만들 땐 다음 템플릿을 사용
+[템플릿](https://redux.js.org/tutorials/fundamentals/part-4-store#middleware)
+```javascript
+    const middleware = store => next => action => {
+        // 하고 싶은 작업...
+    }
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    function middleware(store) {
+        return function (next) {
+            return function (action) {
+                // 하고 싶은 작업...
+            };
+        };
+    };
+```
+    - 첫번째 store는 리덕스 스토어 인스턴스
+        - dispatch, getState, subscribe 내장함수들
+    - 두번째 next
+        - 액션을 다음 미들웨어에게 전달하는 함수
+    - 세번째 action
+        - 현재 처리하고 있는 액션 객체
