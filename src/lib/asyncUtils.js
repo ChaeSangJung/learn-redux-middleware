@@ -2,7 +2,7 @@ export const createPromiseThunk = (type, promiseCreator) => {
     const [SUCESS, ERROR] = [`${type}_SUCESS`,`${type}_ERROR`];
 
     return param => async dispatch => {
-        dispatch(type, param);
+        dispatch({type, param});
         try {
             const payload = await promiseCreator(param);
             dispatch({ type: SUCESS, payload });

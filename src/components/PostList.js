@@ -1,14 +1,17 @@
 import React from "react";
 
-const PostList = ({ posts }) => {
+const PostList = ({ data, loading }) => {
     return (
-        <ul>
-            {posts.map((post)=>(
-                <li key={post.id}>
-                    {post.title}
-                </li>
-            ))}
-        </ul>
+        <>
+            <div>list</div>
+            {loading ? <p>Loading</p> : 
+                <ul>
+                    {data && data.map(datum => 
+                        <li key={datum.id}>{datum.title}</li>
+                    )}
+                </ul>
+            }
+        </>
     )
 };
 
