@@ -4,13 +4,13 @@ const PostList = ({ data, loading }) => {
     return (
         <>
             <div>list</div>
-            {loading ? <p>Loading</p> : 
+            {loading ? (<p>Loading</p>) : (
                 <ul>
-                    {data && data.map(datum => 
-                        <li key={datum.id}>{datum.title}</li>
+                    {data && data.map((datum) => 
+                        (<li key={datum.id}>{datum.title}</li>)
                     )}
                 </ul>
-            }
+            )}
         </>
     )
 };
