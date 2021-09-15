@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { thunkIncreaseAsync, thunkDecreaseAsync } from '../modules/thunkcounter';
 
 function ThunkCounterContainer() {
-  const number = useSelector(state => state.thunkcounter);
+  const { thunkcounter } = useSelector(state => state);
   const dispatch = useDispatch();
 
   const onIncrease = () => {
@@ -16,7 +16,7 @@ function ThunkCounterContainer() {
 
   return (
       <ThunkCounter 
-        number = {number}
+        number = {thunkcounter}
         onIncrease={onIncrease} 
         onDecrease={onDecrease} 
       />
