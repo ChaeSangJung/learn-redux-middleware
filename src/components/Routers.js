@@ -21,6 +21,6 @@ const Routers = () => {
             </>
         </BrowserRouter>
     )
-}
+};
 
 export default Routers;

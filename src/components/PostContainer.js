@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPost } from "../modules/posts";
+import { getPost, clearPost } from "../modules/posts";
 import Post from "./Post";
 
 const PostContainer = ({match}) => {
@@ -12,6 +12,9 @@ const PostContainer = ({match}) => {
     
     useEffect(()=>{
         dispatch(getPost(postId));
+        return () => {
+            dispatch(clearPost());
+        }
     },[dispatch, postId]);
     
     return (

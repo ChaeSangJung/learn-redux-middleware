@@ -63,3 +63,14 @@ export const handleAsyncAction = (type, key) => {
         }
     };
 };
+
+// 특정 id 를 처리하는 Thunk 생성함수
+const defaultIdSelector = param => param;
+
+export const createPromiseThunkById = (type, promiseCreator, idSelector = defaultIdSelector) => {
+    const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
+
+    return param => async dispatch => {
+        
+    }
+}

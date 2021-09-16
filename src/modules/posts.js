@@ -15,6 +15,8 @@ const GET_POSTS_ERROR = "GET_POSTS_ERROR";
 const GET_POST = "GET_POST";
 const GET_POST_SUCESS = "GET_POST_SUCESS";
 const GET_POST_ERROR = "GET_POST_ERROR";
+// 포스트 비우기
+const CLEAR_POST = "CLEAR_POST";
 
 // thunk
 // export const getPosts = () => async dispatch => {
@@ -28,6 +30,8 @@ const GET_POST_ERROR = "GET_POST_ERROR";
 // };
 export const getPosts = createPromiseThunk(GET_POSTS, postsApi.getPosts);
 export const getPost = createPromiseThunk(GET_POST, postsApi.getPostById);
+
+export const clearPost = () => ({ type: CLEAR_POST });
 
 const initialState = {
     posts : reducerUtils.initial(),
@@ -45,6 +49,11 @@ const posts = (state=initialState, action) => {
         case GET_POST_ERROR:
             const postReducer = handleAsyncAction(GET_POST, "post");
             return postReducer(state, action);
+        case CLEAR_POST:
+            return {
+                ...state,
+                post : reducerUtils.initial()
+            };
         default:
             return state;
     }
