@@ -1,15 +1,9 @@
 import React from 'react';
-import CounterContainer from './components/CounterContainer';
-import ThunkCounterContainer from './components/ThunkCounterContainer';
-import PostListContainer from "./components/PostListContainer";
+import Routers from "./components/Routers";
 
 function App() {
   return (
-    <div>
-      <CounterContainer />
-      <ThunkCounterContainer />
-      <PostListContainer />
-    </div>
+    <Routers />
   );
 }
 

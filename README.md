@@ -56,3 +56,4 @@
         - thunk 함수에서 async/await를 사용해도 상관 없음
 
 ### 5. redux-thunk로 프로미스 다루기
+    - swr, react-query를 통해서 전역관리를 줄이는 추세
