@@ -1,7 +1,6 @@
 import React from "react";
 
-const Post = ({data, loading}) => {
-    console.log(data, )
+const Post = ({data, loading}) => {    
     return (
         <div>
             {loading ? (<p>Loading...</p>): (

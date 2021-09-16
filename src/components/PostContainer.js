@@ -9,7 +9,7 @@ const PostContainer = ({match}) => {
 
     const { params : { id } } = match;
     const postId = parseInt(id);
-
+    
     useEffect(()=>{
         dispatch(getPost(postId));
     },[dispatch, postId]);
